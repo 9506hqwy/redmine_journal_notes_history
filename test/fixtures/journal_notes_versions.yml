@@ -1,0 +1,25 @@
+journal_notes_versions_001:
+  id: 1
+  journal_id: 1
+  notes: 'a'
+  private_notes: false
+journal_notes_versions_002:
+  id: 2
+  journal_id: 1
+  notes: |
+    a
+  private_notes: false
+journal_notes_versions_003:
+  id: 3
+  journal_id: 1
+  notes: |
+    a
+    b
+  private_notes: true
+journal_notes_versions_004:
+  id: 4
+  journal_id: 1
+  notes: |
+    a
+    b
+  private_notes: false

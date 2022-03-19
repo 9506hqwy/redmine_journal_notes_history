@@ -1,0 +1,35 @@
+journal_notes_histories_001:
+  id: 1
+  journal_id: 1
+  container_id: 1
+  container_type: Journal
+  user_id: 2
+  created_on: <%= 5.days.ago.to_date.to_s(:db) %>
+journal_notes_histories_002:
+  id: 2
+  journal_id: 1
+  container_id: 1
+  container_type: JournalNotesVersion
+  user_id: 2
+  created_on: <%= 4.days.ago.to_date.to_s(:db) %>
+journal_notes_histories_003:
+  id: 3
+  journal_id: 1
+  container_id: 2
+  container_type: JournalNotesVersion
+  user_id: 2
+  created_on: <%= 3.days.ago.to_date.to_s(:db) %>
+journal_notes_histories_004:
+  id: 4
+  journal_id: 1
+  container_id: 3
+  container_type: JournalNotesVersion
+  user_id: 2
+  created_on: <%= 2.days.ago.to_date.to_s(:db) %>
+journal_notes_histories_005:
+  id: 5
+  journal_id: 1
+  container_id: 4
+  container_type: JournalNotesVersion
+  user_id: 2
+  created_on: <%= 1.hours.ago.to_date.to_s(:db) %>

@@ -1,0 +1,5 @@
+en:
+  journal_notes_updated: "Updated by %{author} at %{date}."
+  journal_notes_disabled_private_notes: Set notes as public.
+  journal_notes_enabled_private_notes: Set notes as private.
+  label_need_to_refresh: Need to refresh

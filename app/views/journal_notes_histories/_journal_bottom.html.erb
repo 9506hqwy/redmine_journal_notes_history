@@ -1,0 +1,53 @@
+<%
+   if journal &&
+      journal.note_history.present?
+%>
+
+<%
+   history = journal.note_history
+   author = history.user.name
+   date = format_time(history.created_on)
+%>
+
+<div id="change-history-<%= history.id %>" style="text-align: right">
+  <p>
+    <em>
+      <%= l(:journal_notes_updated, author: author, date: date) %>
+    </em>
+    (<%=
+        link_to(l(:label_view_diff),
+                {
+                  controller: :journal_notes_histories,
+                  action: :diff,
+                  journal_id: journal.id,
+                  history_id: history.id,
+                })
+    %>)
+  </p>
+  <script type="text/javascript">
+    function journal_note_history_edit_cb_<%= journal.id %>() {
+      document.querySelector('form#journal-<%= journal.id %>-form input[name="commit"]')
+        .addEventListener('click', function(e) {
+          setTimeout(journal_note_history_commit_cb_<%= journal.id %>, 100);
+        });
+    }
+
+    function journal_note_history_commit_cb_<%= journal.id %>() {
+      document.querySelector('div#change-history-<%= history.id %> a').outerHTML = '<%= l(:label_need_to_refresh) %>';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('change-<%= journal.id %>')
+        .appendChild(document.getElementById('change-history-<%= history.id %>'));
+
+      let edit = document.querySelector('div#change-<%= journal.id %> a.icon-edit');
+      if (edit) {
+        edit.addEventListener('click', function() {
+          setTimeout(journal_note_history_edit_cb_<%= journal.id %>, 500);
+        });
+      }
+    });
+  </script>
+</div>
+
+<% end %> <!-- if -->

@@ -1,0 +1,39 @@
+<div class="contextual">
+  <%= link_to(l(:label_history),
+              {
+                action: :show,
+                journal_id: @journal.id,
+              },
+              class: 'icon icon-history') %>
+</div>
+
+<%= journal_breadcrumb(@journal) %>
+
+<%= title(title_link_to_journal_notes_history(@journal, @from_id, @to_id, @page),
+          "#{l(:field_version)} #{@to_id}") %>
+
+<div class="journal"> <!-- apply style to `private notes` in Redmine3.  -->
+  <p>
+    <%= l(:field_version) %>
+    <%= link_to_notes_history(@to_id, @page) %>
+    <%= render_private_notes_indicator(@history.container) %>
+    <em>(<%= @history.user %>, <%= format_time(@history.created_on) %>)</em>
+  </p>
+
+  <%= render_notes(@journal.issue, @history.container) %>
+</div>
+
+<script type="text/javascript">
+  // delete context menu in Redmine3.
+  document.addEventListener('DOMContentLoaded', function() {
+    let edit = document.querySelector('div#journal-<%= @journal.id %>-notes a.icon-edit');
+    if (edit) {
+      edit.style = "display: none;";
+    }
+
+    let del = document.querySelector('div#journal-<%= @journal.id %>-notes a.icon-del');
+    if (del) {
+      del.style = "display: none;";
+    }
+  });
+</script>

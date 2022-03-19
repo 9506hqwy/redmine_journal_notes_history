@@ -1,0 +1,56 @@
+<%= stylesheet_link_tag('scm') %>
+
+<div class="contextual">
+  <%= link_to(l(:label_history),
+              {
+                action: :show,
+                journal_id: @journal.id,
+              },
+              class: 'icon icon-history') %>
+</div>
+
+<%= journal_breadcrumb(@journal) %>
+
+<%= title(title_link_to_journal_notes_history(@journal, @from_id, @to_id, @page),
+          "#{l(:field_version)} #{@to_id}") %>
+
+<div class="journal"> <!-- apply style to `private notes` in Redmine3.  -->
+  <p>
+    <%= l(:field_version) %>
+    <%= link_to_notes_history(@from_id, @page) %>
+    <%= render_private_notes_indicator(@from_history.container) %>
+    <em>(<%= @from_history.user %>, <%= format_time(@from_history.created_on) %>)</em>
+    &#8594;
+    <%= l(:field_version) %>
+    <%= link_to_notes_history(@to_id, @page) %>
+    <%= render_private_notes_indicator(@to_history.container) %>
+    <em>(<%= @to_history.user %>, <%= format_time(@to_history.created_on) %>)</em>
+  </p>
+
+  <div class="scm-diff">
+    <%= form_tag('', method: 'GET') do %>
+      <%= hidden_field_tag('page', @page) %>
+      <%= hidden_field_tag('from_id', @from_id) %>
+      <%= hidden_field_tag('to_id', @to_id) %>
+
+      <p>
+        <%= l(:label_view_diff) %>:
+        <label><%= radio_button_tag('diff_type', 'inline', @diff_type != 'sbs', onchange: 'this.form.submit()') %>
+          <%= l(:label_diff_inline) %>
+        </label>
+        <label><%= radio_button_tag('diff_type', 'sbs', @diff_type == 'sbs', onchange: 'this.form.submit()') %>
+          <%= l(:label_diff_side_by_side) %>
+        </label>
+      </p>
+    <% end %>
+
+    <% if @from_history.container.private_notes? != @to_history.container.private_notes? %>
+    <p>
+      <%= l(:journal_notes_disabled_private_notes) unless @to_history.container.private_notes? %>
+      <%= l(:journal_notes_enabled_private_notes) if @to_history.container.private_notes? %>
+    </p>
+    <% end %>
+
+    <%= render :partial => 'common/diff', locals: { diff: @diff, diff_type: @diff_type, diff_style: 'Subversion' } %>
+  </div>
+</div>

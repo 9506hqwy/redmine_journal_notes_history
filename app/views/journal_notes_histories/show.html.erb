@@ -1,0 +1,65 @@
+<%= journal_breadcrumb(@journal) %>
+
+<%= title(l(:label_history)) %>
+
+<%= form_tag({action: :diff, journal_id: @journal.id},
+             id: 'journal_notes_histories',
+             method: 'GET') do %>
+  <%= hidden_field_tag('page', @page) %>
+
+<p>
+  <%= submit_tag l(:label_view_diff) %>
+</p>
+
+<table class="list">
+  <thead>
+    <th>#</th>
+    <th></th>
+    <th></th>
+    <th><%= l(:field_updated_on) %></th>
+    <th><%= l(:field_author) %></th>
+    <% unless deny_private_notes? %>
+    <th><%= l(:field_private_notes) %></th>
+    <% end %>
+  </thead>
+  <tbody>
+    <% @histories.each_with_index do |history, idx| %>
+    <tr>
+      <td class="id">
+        <%= link_to_notes_history(history.id, @page) %>
+      </td>
+      <td class="checkbox">
+        <%= radio_button_tag('to_id',
+                             history.id,
+                             history.id == @to_id,
+                             onclick: "$('#from-#{idx + 1}').prop('checked', true);",
+            ) if idx != @histories.length - 1 %>
+      </td>
+      <td class="checkbox">
+        <%= radio_button_tag('from_id',
+                             history.id,
+                             history.id == @from_id,
+                             id: "from-#{idx}",
+            ) if idx != 0 %>
+      </td>
+      <td class="updated_on"><%= format_time(history.created_on) %></td>
+      <td class="author"><%= link_to_user(history.user) %></td>
+      <% unless deny_private_notes? %>
+      <td class="private_notes">
+        <% if history.container.private_notes? %>
+        <%= l(:general_text_yes) %>
+        <% end %>
+      </td>
+      <% end %>
+    </tr>
+    <% end %> <!-- @histories.each_with_index -->
+  </tbody>
+</table>
+
+<p>
+  <%= submit_tag l(:label_view_diff) %>
+</p>
+
+<span class="pagination"><%= pagination_links_full(@history_pages, @history_count) %></span>
+
+<% end %> <!-- form_tag -->
