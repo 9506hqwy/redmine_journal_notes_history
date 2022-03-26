@@ -8,8 +8,8 @@ module RedmineJournalNotesHistory
 
       version = JournalNotesVersion.new
       version.journal = journal
-      version.notes = last_notes(journal)
-      version.private_notes = last_private_notes(journal)
+      version.notes = previous_value(journal, 'notes')
+      version.private_notes = previous_value(journal, 'private_notes')
       version.save
 
       history = journal.note_history
@@ -31,22 +31,6 @@ module RedmineJournalNotesHistory
     end
 
     private
-
-    def last_notes(journal)
-      if ActiveRecord::VERSION::MAJOR >= 5
-        journal.notes_before_last_save
-      else
-        previous_value(journal, 'notes')
-      end
-    end
-
-    def last_private_notes(journal)
-      if ActiveRecord::VERSION::MAJOR >= 5
-        journal.private_notes_before_last_save
-      else
-        previous_value(journal, 'private_notes')
-      end
-    end
 
     def previous_value(target, name)
       value = target.previous_changes[name]&.first
