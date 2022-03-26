@@ -2,6 +2,7 @@
 
 require_dependency 'journal_notes_history/journal_patch'
 require_dependency 'journal_notes_history/listener'
+require_dependency 'journal_notes_history/user_patch'
 require_dependency 'journal_notes_history/utils'
 require_dependency 'journal_notes_history/view_listener'
 
