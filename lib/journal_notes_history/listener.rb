@@ -20,6 +20,7 @@ module RedmineJournalNotesHistory
         history.journal = journal
         history.container = version
         history.user = journal.user
+        history.created_on = journal.created_on
       end
       history.save
 
