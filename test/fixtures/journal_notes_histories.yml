@@ -4,32 +4,32 @@ journal_notes_histories_001:
   container_id: 1
   container_type: Journal
   user_id: 2
-  created_on: <%= 5.days.ago.to_date.to_s(:db) %>
+  created_on: <%= 5.days.ago.strftime('%Y-%m-%d %H:%M:%S.%L') %>
 journal_notes_histories_002:
   id: 2
   journal_id: 1
   container_id: 1
   container_type: JournalNotesVersion
   user_id: 2
-  created_on: <%= 4.days.ago.to_date.to_s(:db) %>
+  created_on: <%= 4.days.ago.strftime('%Y-%m-%d %H:%M:%S.%L') %>
 journal_notes_histories_003:
   id: 3
   journal_id: 1
   container_id: 2
   container_type: JournalNotesVersion
   user_id: 2
-  created_on: <%= 3.days.ago.to_date.to_s(:db) %>
+  created_on: <%= 3.days.ago.strftime('%Y-%m-%d %H:%M:%S.%L') %>
 journal_notes_histories_004:
   id: 4
   journal_id: 1
   container_id: 3
   container_type: JournalNotesVersion
   user_id: 2
-  created_on: <%= 2.days.ago.to_date.to_s(:db) %>
+  created_on: <%= 2.days.ago.strftime('%Y-%m-%d %H:%M:%S.%L') %>
 journal_notes_histories_005:
   id: 5
   journal_id: 1
   container_id: 4
   container_type: JournalNotesVersion
   user_id: 2
-  created_on: <%= 1.hours.ago.to_date.to_s(:db) %>
+  created_on: <%= 1.hours.ago.strftime('%Y-%m-%d %H:%M:%S.%L') %>
