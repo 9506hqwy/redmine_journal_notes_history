@@ -6,7 +6,7 @@ class CreateJournalNotesHistories < RedmineJournalNotesHistory::Utils::Migration
       t.belongs_to :journal, null: false, foreign_key: true
       t.references :container, null: false, polymorphic: true
       t.belongs_to :user, foreign_key: true
-      t.timestamp :created_on, null: false
+      t.timestamp :created_on, null: false, limit: 6
     end
   end
 end
