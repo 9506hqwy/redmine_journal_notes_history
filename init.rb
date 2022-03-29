@@ -1,10 +1,18 @@
 # frozen_string_literal: true
 
-require_dependency 'journal_notes_history/journal_patch'
-require_dependency 'journal_notes_history/listener'
-require_dependency 'journal_notes_history/user_patch'
-require_dependency 'journal_notes_history/utils'
-require_dependency 'journal_notes_history/view_listener'
+basedir = File.expand_path('../lib', __FILE__)
+libraries =
+  [
+    'redmine_journal_notes_history/journal_patch',
+    'redmine_journal_notes_history/listener',
+    'redmine_journal_notes_history/user_patch',
+    'redmine_journal_notes_history/utils',
+    'redmine_journal_notes_history/view_listener',
+  ]
+
+libraries.each do |library|
+  require_dependency File.expand_path(library, basedir)
+end
 
 Redmine::Plugin.register :redmine_journal_notes_history do
   name 'Redmine Journal Notes History plugin'
