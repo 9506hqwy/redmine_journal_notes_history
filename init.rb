@@ -18,7 +18,7 @@ Redmine::Plugin.register :redmine_journal_notes_history do
   name 'Redmine Journal Notes History plugin'
   author '9506hqwy'
   description 'This is a journal notes history plugin for Redmine'
-  version '0.1.0'
+  version '0.2.0'
   url 'https://github.com/9506hqwy/redmine_journal_notes_history'
   author_url 'https://github.com/9506hqwy'
 end
