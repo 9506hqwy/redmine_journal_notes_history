@@ -5,14 +5,20 @@ require File.expand_path('../../test_helper', __FILE__)
 class JournalNotesHistoriesControllerTest < Redmine::ControllerTest
   include Redmine::I18n
 
-  fixtures :issues,
+  fixtures :enabled_modules,
+           :enumerations,
+           :issue_statuses,
+           :issues,
            :journal_details,
            :journals,
            :member_roles,
            :members,
            :projects,
+           :projects_trackers,
            :roles,
+           :trackers,
            :users,
+           :versions,
            :journal_notes_histories,
            :journal_notes_versions
 
