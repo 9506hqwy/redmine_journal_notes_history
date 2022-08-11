@@ -2,4 +2,3 @@ ja:
   journal_notes_updated: "%{author} が %{date} に更新しました。"
   journal_notes_disabled_private_notes: 注記をパブリックに設定しました。
   journal_notes_enabled_private_notes: 注記をプライベートに設定しました。
-  label_need_to_refresh: 画面の更新が必要

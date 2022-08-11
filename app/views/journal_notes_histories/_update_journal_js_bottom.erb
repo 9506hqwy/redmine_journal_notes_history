@@ -1,3 +1,20 @@
 <% unless @journal.frozen? %>
-  document.querySelector('div#change-history-<%= journal.id %>').innerHTML = '<%= l(:label_need_to_refresh) %>';
+  <%
+     journal.reload
+     history = journal.note_history
+     author = history.user.name
+     date = format_time(history.created_on)
+  %>
+  document.querySelector('div#change-history-<%= journal.id %>').innerHTML = '<%= escape_javascript(
+    content_tag('em', l(:journal_notes_updated, author: author, date: date))
+  ) %>';
+  document.querySelector('div#change-history-<%= journal.id %>').innerHTML += '(<%= escape_javascript(
+    link_to(l(:label_view_diff),
+            {
+              controller: :journal_notes_histories,
+              action: :diff,
+              journal_id: journal.id,
+              history_id: history.id,
+            })
+  ) %>)';
 <% end %>
