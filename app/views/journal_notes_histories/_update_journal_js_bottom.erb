@@ -1,0 +1,3 @@
+<% unless @journal.frozen? %>
+  document.querySelector('div#change-history-<%= journal.id %>').innerHTML = '<%= l(:label_need_to_refresh) %>';
+<% end %>
