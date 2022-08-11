@@ -11,8 +11,8 @@ module JournalNotesHistoriesHelper
   end
 
   def diff_journal_notes(from, to)
-    from_notes = from.notes.split("\n")
-    to_notes = to.notes.split("\n")
+    from_notes = from.notes.split("\n").map(&:chomp)
+    to_notes = to.notes.split("\n").map(&:chomp)
 
     hunks = Diff::LCS.diff(from_notes, to_notes).map do |b|
       Diff::LCS::Hunk.new(from_notes, to_notes, b, 3, 0)
