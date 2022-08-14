@@ -1,6 +1,6 @@
 # Redmine Journal Notes History
 
-This plugin provides a issue's notes history management. 
+This plugin provides a issue's note history management.
 
 ## Features
 
@@ -8,19 +8,19 @@ This plugin provides a issue's notes history management.
 - Show issue's note history.
 - Show each issue's note diff.
 
-## Install
+## Installation
 
-1. Download plugin
+1. Download plugin in Redmine plugin directory.
    ```sh
-   git clone https://github.com/9506hqwy/redmine_journal_notes_history
+   git clone https://github.com/9506hqwy/redmine_journal_notes_history.git
    ```
-2. Install dependency libraries
+2. Install dependency libraries in Redmine directory.
    ```sh
-   bundle install --without development test 
+   bundle install --without development test
    ```
-3. Install plugin
+3. Install plugin in Redmine directory.
    ```sh
-   bundle exec rake redmine:plugins NAME=redmine_journal_notes_history RAILS_ENV=production
+   bundle exec rake redmine:plugins:migrate NAME=redmine_journal_notes_history RAILS_ENV=production
    ```
 4. Start Redmine
 
@@ -34,8 +34,8 @@ This plugin provides a issue's notes history management.
   * 5.0
 * Database
   * SQLite
-  * MySQL5.7
-  * PostgreSQL12
+  * MySQL 5.7
+  * PostgreSQL 12
 
 ## References
 
