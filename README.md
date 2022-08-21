@@ -41,3 +41,4 @@ This plugin provides a issue's note history management.
 ## References
 
 - [#12388 diffs for editions of issue/notes entries](https://www.redmine.org/issues/12388)
+- [#31505 Mark edited journal notes as "Edited"](https://www.redmine.org/issues/31505)
