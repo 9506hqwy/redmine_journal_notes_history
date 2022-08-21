@@ -11,10 +11,7 @@ class JournalNotesHistory < ActiveRecord::Base
   acts_as_activity_provider type: 'issues',
                             permission: :view_issues,
                             author_key: :user_id,
-                            scope: proc {
-                                     query = joins(journal: {issue: :project})
-                                     RedmineJournalNotesHistory::Utils.filter_private_notes(query)
-                                   }
+                            scope: RedmineJournalNotesHistory::Utils.filter_private_notes(joins(journal: {issue: :project}))
 
   acts_as_event title: proc { |h|
                          issue_status = ((s = h.journal.new_status) ? " (#{s})" : nil)
