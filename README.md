@@ -7,6 +7,7 @@ This plugin provides a issue's note history management.
 - Save previous issue's note in database.
 - Show issue's note history.
 - Show each issue's note diff.
+- Show update activity of non-private note.
 
 ## Installation
 

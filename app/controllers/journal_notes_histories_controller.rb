@@ -65,7 +65,7 @@ class JournalNotesHistoriesController < ApplicationController
 
     query = @journal.note_histories.order(created_on: 'DESC')
     if deny_private_notes?
-      query = filter_private_notes(query)
+      query = RedmineJournalNotesHistory::Utils.filter_private_notes(query)
     end
 
     @history_count = query.count
@@ -91,14 +91,6 @@ class JournalNotesHistoriesController < ApplicationController
 
   private
 
-  def filter_private_notes(query)
-    # `.left_joins(...)` in Rails5 or later.
-    query
-      .joins("LEFT OUTER JOIN journals ON journals.id = journal_notes_histories.container_id AND journal_notes_histories.container_type = 'Journal'")
-      .joins("LEFT OUTER JOIN journal_notes_versions ON journal_notes_versions.id = journal_notes_histories.container_id AND journal_notes_histories.container_type = 'JournalNotesVersion'")
-      .where('journals.private_notes = ? OR journal_notes_versions.private_notes = ?', false, false)
-  end
-
   def find_journal_by_journal_id
     @journal = Journal.visible.find(params[:journal_id])
     @project = @journal.journalized.project
@@ -122,7 +114,7 @@ class JournalNotesHistoriesController < ApplicationController
       .order(created_on: 'DESC')
       .limit(1)
     if deny_private_notes?
-      query = filter_private_notes(query)
+      query = RedmineJournalNotesHistory::Utils.filter_private_notes(query)
     end
 
     query.first&.id.to_i

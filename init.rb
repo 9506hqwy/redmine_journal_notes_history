@@ -21,4 +21,6 @@ Redmine::Plugin.register :redmine_journal_notes_history do
   version '0.2.0'
   url 'https://github.com/9506hqwy/redmine_journal_notes_history'
   author_url 'https://github.com/9506hqwy'
+
+  activity_provider :issues, class_name: 'JournalNotesHistory'
 end
