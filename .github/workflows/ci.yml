@@ -126,7 +126,8 @@ jobs:
             mkdir coverage
         fi
 
-        # skip db:test:prepare
+        # for MySQL and Redmine4.x only, why?
+        bundle exec rake db:test:prepare
         bundle exec rake test TEST=plugins/${PLUGIN_NAME}/test/**/*_test.rb
 
     - name: Generate coverage report
