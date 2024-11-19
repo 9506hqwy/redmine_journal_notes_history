@@ -8,6 +8,13 @@ module RedmineJournalNotesHistory
       Migration = ActiveRecord::Migration
     end
 
+    if defined?(ApplicationRecord)
+      # https://www.redmine.org/issues/38975
+      ModelBase = ApplicationRecord
+    else
+      ModelBase = ActiveRecord::Base
+    end
+
     def self.filter_private_notes(query)
       # `.left_joins(...)` in Rails5 or later.
       query

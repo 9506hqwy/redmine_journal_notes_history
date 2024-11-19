@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class JournalNotesVersion < ActiveRecord::Base
+class JournalNotesVersion < RedmineJournalNotesHistory::Utils::ModelBase
   belongs_to :journal
   has_one(:note_history, class_name: :JournalNotesHistory, as: :container, dependent: :destroy)
 

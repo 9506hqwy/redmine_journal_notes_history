@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class JournalNotesHistory < ActiveRecord::Base
+class JournalNotesHistory < RedmineJournalNotesHistory::Utils::ModelBase
   belongs_to :journal
   belongs_to :container, polymorphic: true
   belongs_to :user
