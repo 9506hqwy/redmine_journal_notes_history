@@ -50,6 +50,13 @@ class JournalsTest < Redmine::IntegrationTest
     assert_equal 'a', j.note_history.container.notes
     assert_not j.note_history.container.private_notes
 
+    # Timestamp precision is seconds order in MySQL and Redmine6 and `test` environment. So delay 1[s].
+    # In `production` environment.
+    # - created_on: timestamp(6)
+    # In `test` environment.
+    # - created_on: timestamp
+    sleep(1)
+
     put(
       "/journals/#{j.id}",
       params: {
